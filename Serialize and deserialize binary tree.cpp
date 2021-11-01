@@ -111,12 +111,9 @@ public:
                 node->right = r;
                 q.push(r);
             }
-            
-        }
-        
+        } // queue is empty
     return root;
     }
-
 };
 
 
