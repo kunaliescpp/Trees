@@ -1,0 +1,48 @@
+/*
+Problem Link: https://practice.geeksforgeeks.org/problems/construct-bst-from-post-order/1
+
+Construct BST from Postorder 
+
+Given postorder traversal of a Binary Search Tree, you need to construct a BST from postorder traversal. The output will be 
+inorder traversal of the constructed BST.
+
+Example 1:
+Input: 6 , 1 7 5 50 40 10
+Output: 1 5 7 10 40 50
+
+
+Constraints:
+1 <= T <= 100
+1 <= N <= 100
+*/
+
+/*
+struct Node{
+	int data;
+	Node *left, *right;
+};*/
+
+
+Node *cTree (int post[], int &postIndex, int lr, int rr){
+    
+    if(postIndex < 0 || post[postIndex] < lr || post[postIndex] > rr) return NULL;
+     
+    Node *root = new Node (post[postIndex--]);
+    
+    root->right = cTree(post, postIndex, root->data, rr);  // for 5 (left-right) range is -> 50-101    X
+    root->left = cTree(post, postIndex, lr, root->data);      // 40-50   X ,  5-> 10-40  X
+                                                              //  < 10    ok 
+return root;    
+}
+
+//Tree dress up in : BST fashion + Postorder fashion
+Node *constructTree (int post[], int size){
+   
+    int postIndex = size - 1;
+    int lr = -1e9, rr = 1e9;
+    Node *curr = cTree(post, postIndex, lr, rr);
+   
+   return curr;
+}
+
+
