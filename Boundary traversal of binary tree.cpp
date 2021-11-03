@@ -39,9 +39,9 @@ Output: 20 8 4 10 14 25 22
 
 
 class Solution {
-public:
-// Time complexity : O(n)
-// Space complexity : O(n)
+    public:
+   //Time complexity : O(n)
+   //Space complexity : O(n)
     void leftBoundary(Node* root, vector<int>& v){
 
         if(root == NULL || (root->left == NULL && root->right == NULL)) return;
@@ -93,6 +93,4 @@ public:
     }
 };
 
-
-  
   
