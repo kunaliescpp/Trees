@@ -30,8 +30,8 @@ class Solution {
 public:
 //    once upon a time when all tree nodes are active, its Every Node's Story:
 //         1. mere pass Camera he : 0
-//         2. mere pass Camera nhi he : -> nhi chahiye mujhse niche vale node pe he : 1
-//                                      -> camera ki need he upar vale pe hona chahiye : -1
+//         2. mere pass Camera nhi he : 1
+//         3. parent pe hona chahiye : -1
     
 // Approach: leaf node ko camera nhi denge, parent node ko denge jisse leaf and grandparent dono cover honge 
 // this condition should carefully examine: node ke left pe he bas 1 node (without camera) or right pe camera  he to parent node
