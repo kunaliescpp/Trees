@@ -36,9 +36,9 @@ Node *cTree (int post[], int &postIndex, int lr, int rr){
      
     Node *root = new Node (post[postIndex--]);
     
-    root->right = cTree(post, postIndex, root->data, rr);  // for 5 (left-right) range is -> 50-101    X
-    root->left = cTree(post, postIndex, lr, root->data);      // 40-50   X ,  5-> 10-40  X
-                                                              //  < 10    ok 
+    root->right = cTree(post, postIndex, root->data, rr);  
+    root->left = cTree(post, postIndex, lr, root->data);   
+                                                             
 return root;    
 }
 
