@@ -9,6 +9,13 @@ inorder traversal of the constructed BST.
 Example 1:
 Input: 6 , 1 7 5 50 40 10
 Output: 1 5 7 10 40 50
+Explanation: The BST for the given post order traversal is:
+	    10
+	   /  \
+	  5    40 
+	 / \     \
+	1   7     50
+Thus the inorder traversal of BST is: 1 5 7 10 40 50
 
 
 Constraints:
