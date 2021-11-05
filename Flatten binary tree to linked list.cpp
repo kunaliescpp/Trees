@@ -32,7 +32,7 @@ The number of nodes in the tree is in the range [0, 2000].
 class Solution {
 public:
     
-    //Approach: 4 ko 5 se link krenge   
+    //Approach: 5 ko 4 se link krenge   
     void flatten_nodes(TreeNode* curr, TreeNode *&prv){
         
         if(curr == NULL) return;
