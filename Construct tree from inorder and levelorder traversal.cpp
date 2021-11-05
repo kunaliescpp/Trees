@@ -5,23 +5,22 @@ Construct tree from Inorder and LevelOrder
 
 Given inorder and level-order traversals of a Binary Tree, construct the Binary Tree and return the root Node. 
 
-
-Constraints:
-1 <= T <= 100
-1 <= N <= 100
-
 Example 1:
-Input:
-2
-3
-1 0 2 
-0 1 2 
-7
-3 1 4 0 5 2 6 
-0 1 2 3 4 5 6 
-Output:
-0 1 2
-0 1 3 4 2 5 6
+Input: in[] = {4, 8, 10, 12, 14, 20, 22}, 
+       level[] = {20, 8, 22, 4, 12, 10, 14}
+
+Output: Inorder traversal of the constructed tree is: 4 8 10 12 14 20 22
+
+Explanation: In a Levelorder sequence, the first element is the root of the tree. So we know ’20’ is root for given sequences. 
+By searching ’20’ in Inorder sequence, we can find out all elements on left side of ‘20’ are in left subtree and elements on 
+right are in right subtree. So we know below structure now. 
+
+             20
+           /    \
+          /      \ 
+ {4,8,10,12,14}  {22}
+ 
+Let us call {4,8,10,12,14} as left subarray in Inorder traversal and {22} as right subarray in Inorder traversal. 
 */
 
 /*Node is as follows:
