@@ -72,8 +72,7 @@ public:
                 return temp;
             }
             
-            else { // have both the children : hme jo node delete karni he, usse thodi si choti ya thodi si bdi
-                   // value me se koi 1 leke root ki jgah dal kar, root delete kar denge
+            else { 
                 TreeNode *succ = getSuccesor(root);
                 root->val = succ->val;
                 root->right = deleteNode(root->right, succ->val);
