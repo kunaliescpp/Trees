@@ -47,7 +47,7 @@ public:
             return b;
         }
         
-        else return root;
+        else return root;    //one is on left side and other is on right side
     }
 };
 
