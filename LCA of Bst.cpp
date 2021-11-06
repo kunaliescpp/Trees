@@ -31,27 +31,24 @@ p != q
 p and q will exist in the BST.
 */
 
-
-
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
         if(root == NULL) return NULL;
         
-        if(root->val > p->val && root->val > q->val && root->right != NULL){
+        if(root->val > p->val && root->val > q->val){
             TreeNode *a =  lowestCommonAncestor(root->left, p, q);
             return a;
         }
         
-        if(root->val < p->val && root->val < q->val && root->right != NULL){
+        else if(root->val < p->val && root->val < q->val){
             TreeNode *b =  lowestCommonAncestor(root->right, p, q); 
             return b;
         }
-    
-    return root;   // root == p || root == q
+        
+        else return root;
     }
 };
-
 
 
