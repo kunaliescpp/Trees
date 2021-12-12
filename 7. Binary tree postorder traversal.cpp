@@ -14,11 +14,9 @@ The number of the nodes in the tree is in the range [0, 100].
 -100 <= Node.val <= 100
 */
 
-
 class Solution {
 public:
-    // Time complexity : O(2*n)        
-    // space complexity : O(n)
+
     vector<int> postorderTraversal(TreeNode* root) {
         
         vector<int>v;
@@ -26,9 +24,7 @@ public:
         
         stack<TreeNode *>stk;
         TreeNode *curr = root;
-        TreeNode *prv = NULL;
-        
-        while( curr != NULL || !stk.empty()){
+        while(curr != NULL || !stk.empty()){
             
            while(curr != NULL){
                stk.push(curr);
@@ -36,12 +32,13 @@ public:
            }
        
             curr = stk.top();
-            if(curr->right == NULL || curr->right == prv){
+            stk.pop();
+            
+            if(curr->right == NULL){
                 v.push_back(curr->val);
-                stk.pop();
-                prv = curr;
                 curr = NULL;
             } else{
+                stk.push(new TreeNode(curr->val));
                 curr = curr->right;
             }
         } 
