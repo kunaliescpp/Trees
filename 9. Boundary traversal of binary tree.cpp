@@ -44,6 +44,7 @@ class Solution {
    //Space complexity : O(n)
     void leftBoundary(Node* root, vector<int>& v){
 
+        //leaves has seperate function so, return if leaves occur
         if(root == NULL || (root->left == NULL && root->right == NULL)) return;
     
         v.push_back(root->data);
