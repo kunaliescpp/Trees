@@ -55,10 +55,9 @@ public:
         // if(root == NULL) return v;
         
         stack<TreeNode *>stk;
-        stk.push(root);
         TreeNode *curr = root;
         
-        while( curr != NULL && !stk.empty()){
+        while(curr != NULL || !stk.empty()){
             
            while(curr != NULL){
                v.push_back(curr->val);
