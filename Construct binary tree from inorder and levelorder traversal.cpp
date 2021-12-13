@@ -36,16 +36,15 @@ Node* CTree(int inorder[], unordered_map<int, int>& level, int is, int ie){
         
         int inIndex = is;
         for(int i = is + 1; i <= ie; i++){
-            if(level[inorder[i]] < level[inorder[inIndex]]){         // x < level[3]
-                inIndex = i;                                         // inIndex = 3
+            if(level[inorder[i]] < level[inorder[inIndex]]){     
+                inIndex = i;                                        
             }
         }
     
         Node *node = new Node (inorder[inIndex]);
-        if(is == ie) return node;
         
-        node->left = CTree(inorder, level, is, inIndex - 1);  //if(is > inIndex-1)return NULL
-        node->right = CTree(inorder, level, inIndex + 1, ie); //if(index+1 > ie) return NULL
+        node->left = CTree(inorder, level, is, inIndex - 1); 
+        node->right = CTree(inorder, level, inIndex + 1, ie); 
         
 return node;
 }
