@@ -40,7 +40,8 @@ Constraints:
 
 class Solution{
   public:
-    
+  
+  // Time complexity : O(h)
   void solver(Node* root, int key, int &ans){
 
       if(root == NULL) return;
