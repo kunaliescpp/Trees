@@ -41,6 +41,8 @@ Node* solver(int inorder[], int postorder[], int& pi, int si, int ei){
 
     root->right = solver(inorder, postorder, pi, idx + 1, ei);
     root->left = solver(inorder, postorder, pi, si, idx-1);
+ 
+return root;
 }
 
 Node* construct(int inorder[], int postorder[]){
