@@ -24,19 +24,31 @@ The number of nodes in the tree is in the range [1, 200].
 Node.val is either 0 or 1.
  */
 
-
 class Solution {
 public:
+    
+    bool solver(TreeNode*& root){
+        
+        if(root == NULL) return false;
+        
+        bool a = solver(root->left);
+        bool b = solver(root->right);
+        
+        if(a == false && b == false && root->val == 0){
+            root = NULL;
+            return false;
+        } else{
+            return true;
+        }
+        
+    return true;
+    }
+    
     TreeNode* pruneTree(TreeNode* root) {
         
         if(root == NULL) return NULL;
-        
-        root->left = pruneTree(root->left);
-        root->right = pruneTree(root->right);
-        
-        if(root->left != NULL || root->right != NULL) return root;
-        
-        if(root->val == 0) return NULL;
+    
+        solver(root);
         
     return root; 
     }
