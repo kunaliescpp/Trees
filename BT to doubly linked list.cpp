@@ -44,11 +44,13 @@ class Solution{
        
        solver(root->left, head, prv);
        
-       if(prv == NULL) head = root;
-       else {
-           root->left = prv;
-           prv->right = root;
+       if(prv == NULL){
+            head = root;
+       } else {
+            root->left = prv;
+            prv->right = root;
        }
+        
         prv = root;
         
         solver(root->right, head, prv);  
