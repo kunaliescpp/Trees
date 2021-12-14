@@ -29,27 +29,27 @@ The number of nodes in the tree is in the range [0, 2000].
 -100 <= Node.val <= 100
 */
 
-class Solution {
-public:
-    
-    //Approach: 5 ko 4 se link krenge   
-    void flatten_nodes(TreeNode* curr, TreeNode *&prv){
+    void flatten_nodes(TreeNode* curr, TreeNode *&nxt){
         
         if(curr == NULL) return;
         
-        flatten_nodes(curr->right, prv);
-        flatten_nodes(curr->left, prv);
+        flatten_nodes(curr->right, nxt);
+        flatten_nodes(curr->left, nxt);
         
-        curr->right = prv;
-        curr->left = NULL;
+        if(nxt == NULL){
+            nxt = curr;
+        } else{
+            curr->right = nxt;
+            curr->left = NULL;
+            nxt = curr;
+        }
         
-        prv = curr;
     }
     
     void flatten(TreeNode* root) {
         
-        TreeNode *prv = NULL;
-        flatten_nodes(root, prv);  
+        TreeNode *nxt = NULL;
+        flatten_nodes(root, nxt);  
     }
 };
 
