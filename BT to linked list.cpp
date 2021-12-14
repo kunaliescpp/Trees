@@ -29,6 +29,9 @@ The number of nodes in the tree is in the range [0, 2000].
 -100 <= Node.val <= 100
 */
 
+class Solution {
+public:
+    
     void flatten_nodes(TreeNode* curr, TreeNode *&nxt){
         
         if(curr == NULL) return;
@@ -42,8 +45,7 @@ The number of nodes in the tree is in the range [0, 2000].
             curr->right = nxt;
             curr->left = NULL;
             nxt = curr;
-        }
-        
+        }       
     }
     
     void flatten(TreeNode* root) {
