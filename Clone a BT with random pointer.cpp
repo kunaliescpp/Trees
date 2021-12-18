@@ -33,7 +33,7 @@ class Solution{
       
       if(tree == NULL) return NULL;
       
-      unordered_map<Node *, Node *>mp;             // mp<original node, copied node>
+      unordered_map<Node *, Node *>mp;             // mp[original node] = new node
       
       Node *clone_root = get_root_of_copied_tree(tree, mp);
       connect_random_nodes(tree, mp);
