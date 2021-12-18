@@ -47,15 +47,11 @@ public:
         else { //root->val == key
         //DELETE
             if(root->left == NULL){              //have only right child
-                TreeNode *temp = root->right;
-                delete root;
-                return temp;
+                return root->right;
             }
             
             else if(root->right == NULL){        //have only left child
-                TreeNode *temp = root->left;
-                delete root;
-                return temp;
+                return root->left;
             }
             
             else { 
