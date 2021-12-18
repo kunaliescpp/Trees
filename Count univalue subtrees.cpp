@@ -48,13 +48,11 @@ public:
         bool check1 = solver(root->left, cnt);
         bool check2 = solver(root->right, cnt);
 
-        // 1. left_sub ok
-        // 2. right_sub ok
-        // 3. left = NULL or left = root
-        // 4. right = NULL or right = root
-        if(check1 && check2 && (root->left == NULL || root->left->val == root->val) && (root->right == NULL || root->right->val == root->val)){
-            cnt++;
-            return true;
+        if(check1 && check2){
+           if((root->left == NULL || root->left->val == root->val) && (root->right == NULL || root->right->val == root->val)){
+              cnt++;
+              return true;
+           }
         }
 
     return false;
