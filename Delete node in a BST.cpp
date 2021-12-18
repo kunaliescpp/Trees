@@ -13,16 +13,10 @@ Explanation: Given key to delete is 3. So we find the node with value 3 and dele
 [5,4,6,2,null,null,7], shown in the above BST.
 Please notice that another valid answer is [5,2,6,null,4,null,7] and it's also accepted.
 
-Example 2:
-Input: root = [5,3,6,2,4,null,7], key = 0
-Output: [5,3,6,2,4,null,7]
-Explanation: The tree does not contain a node with value = 0.
-
 
 Constraints:
 -10^5 <= key <= 10^5
  */
-
 
 class Solution {
 public:
