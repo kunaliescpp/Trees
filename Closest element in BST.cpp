@@ -62,4 +62,26 @@ class Solution{
   }
 };
 
+/* Efficient solution => O(h)
+void solver(Node* root, int key, int &ans){
+    
+    if(root == NULL) return;
+    
+    if(key == root->data){
+        ans = 0;
+        return;
+    }
+    
+    if(key < root->data){
+        ans = min(ans, abs(key - root->data));
+        solver(root->left, key, ans);
+    }
+    
+    if(key > root->data){
+        ans = min(ans, abs(key - root->data));
+        solver(root->right, key, ans);
+    }
+}
+*/
+
 
