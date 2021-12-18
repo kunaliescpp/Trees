@@ -41,27 +41,18 @@ Constraints:
 class Solution{
   public:
   
-  // Time complexity : O(h)
   void solver(Node* root, int key, int &ans){
-
-      if(root == NULL) return;
-
-      if(key == root->data){
-          ans = abs(key-root->data);
-          return;
-      }
-
-      if(key < root->data){
-          ans = min(ans, abs(key - root->data));
-          solver(root->left, key, ans);
-      }
-
-    if(key > root->data){
-        ans = min(ans, abs(key - root->data));
-        solver(root->right, key, ans);
-    }
+    
+    if(root == NULL) return;
+    
+    solver(root->left, key, ans);
+    
+    if(ans >= abs(root->data - key)) ans = abs(root->data - key);
+    else return;
+    
+    solver(root->right, key, ans);
   }
-
+   
   int minDiff(Node *root, int key){
 
       int ans = INT_MAX;
