@@ -37,17 +37,16 @@ public:
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
-        if(root == NULL) return NULL;
-        
-        TreeNode *lc =  lowestCommonAncestor(root->left, p, q);
-        TreeNode *rc =  lowestCommonAncestor(root->right, p, q);
-        
-        if(root == p || root == q) return root;
-        else if(lc != NULL && rc == NULL) return lc;
-        else if(lc == NULL && rc != NULL) return rc;
-        else if(lc != NULL && rc != NULL) return root;
-    
-    return NULL;
+       if(root == NULL) return NULL;
+       if(root == p || root == q) return root;
+
+       TreeNode *lc =  lowestCommonAncestor(root->left, p, q);
+       TreeNode *rc =  lowestCommonAncestor(root->right, p, q);
+
+       if(lc && rc) return root;
+       else if(lc && !rc) return lc;
+       else if(!lc && rc) return rc;
+       else return NULL;
     }
 };
 
