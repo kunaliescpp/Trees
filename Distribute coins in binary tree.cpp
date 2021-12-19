@@ -22,27 +22,15 @@ Output: 3
 Explanation: From the left child of the root, we move two coins to the root [taking two moves]. Then, we move one coin from
 the root of the tree to the right child.
 
-Example 3:
-Input: root = [1,0,2]
-Output: 2
 
-Example 4:
-Input: root = [1,0,0,null,3]
-Output: 4
- 
- 
 Constraints:
 The number of nodes in the tree is n.
 1 <= n <= 100
-0 <= Node.val <= n
-The sum of all Node.val is n.
- */
+*/
 
 class Solution {
 public:
-// it is a classic family story namely,preorder.
-//if child has no coins -> child says parent mujhe 1 move me coin do by returning -1 (abs(-1) move me vapis lega);
-//if child has 3 coins -> child says 2 tum rakhlo by returning 2 (2 moves me dega)
+
     int coins(TreeNode* root, int& moves){
         
         if(root == NULL) return 0;
@@ -63,6 +51,5 @@ public:
     return moves;
     }
 };
-
 
 
