@@ -27,30 +27,26 @@ public:
         
         if(root == NULL) return 0;
         
-        int ans = 0;
+        int maxi = 0;
         queue<pair<TreeNode*, int>> q;
         q.push({root, 0});
         while(!q.empty()){
             
-            int min_idx = q.front().second;              //to make id starting from 0
-            int sn, en;
-            int k = q.size();
-            while(k--){
-                TreeNode* f = q.front().first;
-                int curr_id = q.front().second - min_idx;
+            int f = q.front().second;              
+            int n = q.size();
+            for(int i = 0; i < n; i++){
+                TreeNode* node = q.front().first;
+                int val = q.front().second;
                 q.pop();
                 
-                if(k == q.size()-1) sn = curr_id;
-                if(k == 0) en = curr_id;
+                if(i == n-1) maxi = max(maxi, val-f+1);
                 
-                if(f->left != NULL) q.push({f->left, 2*curr_id+1});                    // overflow in, int c1 =  2*curr_idx + 1
-                if(f->right != NULL) q.push({f->right, 2*curr_id+2});
+                if(node->left != NULL) q.push({node->left, 2*(val-f)+1});                    // overflow in, int c1 =  2*curr_idx + 1
+                if(node->right != NULL) q.push({node->right, 2*(val-f)+2});
             }
-        
-        ans = max(ans, en-sn+1);
         }
     
-    return ans;
+    return maxi;
     }
 };
 
