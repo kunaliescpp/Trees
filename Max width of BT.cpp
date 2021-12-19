@@ -34,16 +34,20 @@ public:
             
             int f = q.front().second;              
             int n = q.size();
+            int sn, en;
             for(int i = 0; i < n; i++){
                 TreeNode* node = q.front().first;
                 int val = q.front().second;
                 q.pop();
                 
-                if(i == n-1) maxi = max(maxi, val-f+1);
+                if(i == 0) sn = val-f;
+                if(i == n-1) en = val-f;
                 
                 if(node->left != NULL) q.push({node->left, 2*(val-f)+1});                    // overflow in, int c1 =  2*curr_idx + 1
                 if(node->right != NULL) q.push({node->right, 2*(val-f)+2});
             }
+            
+            maxi = max(maxi, en-sn+1);
         }
     
     return maxi;
