@@ -11,11 +11,6 @@ where the null nodes between the end-nodes are also counted into the length calc
 It is guaranteed that the answer will in the range of 32-bit signed integer.
 
 Example 1:
-Input: root = [1,3,2,5,3,null,9]
-Output: 4
-Explanation: The maximum width existing in the third level with the length 4 (5,3,null,9).
-
-Example 2:
 Input: root = [1,3,2,5,null,null,9,6,null,null,7]
 Output: 8
 Explanation: The maximum width existing in the fourth level with the length 8 (6,null,null,null,null,null,null,7).
@@ -25,7 +20,6 @@ Constraints:
 The number of nodes in the tree is in the range [1, 3000].
 -100 <= Node.val <= 100
  */
-
 
 class Solution {
 public:
