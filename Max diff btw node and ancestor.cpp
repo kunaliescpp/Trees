@@ -39,9 +39,7 @@ public:
         
         mini = min(mini, root->val);
         maxi = max(maxi, root->val);
-        
         // cout << mini << " " << maxi << endl;
-        
         diff = max(diff, abs(maxi - mini));
         
         solver(root->left, mini, maxi , diff);
