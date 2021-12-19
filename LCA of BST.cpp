@@ -49,6 +49,8 @@ public:
 };
 
 /*
+        EFFICIENT SOLUTION:
+
         if(root == NULL) return NULL;
         
         if(root->val > p->val && root->val > q->val){
