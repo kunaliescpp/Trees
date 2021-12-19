@@ -35,8 +35,8 @@ class Solution{
         if(root == NULL) return;
         
         solve(root->left, k, ans);
+          
         k--;
-        
         if(k == 0){
             ans = root->data;
             return;
