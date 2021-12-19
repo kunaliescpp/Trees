@@ -42,14 +42,14 @@ Constraints:
 class Solution{
     public:
     
-    class SubTreeInfo{
+    class info{
         
         public:
         int min, max;
         int size;
         bool isBST;
      
-        SubTreeInfo(int min, int max, int size, bool isBST){
+        info(int min, int max, int size, bool isBST){
             this->min = min;
             this->max = max;
             this->size = size;
@@ -57,33 +57,30 @@ class Solution{
         }
     };
     
-    SubTreeInfo* findLargestBST(Node *root){
+    info* solver(Node *root){
         
-        if (root == NULL) {
-            return new SubTreeInfo(INT_MAX, INT_MIN, 0, true);
+        if(root == NULL) {
+            return new info(INT_MAX, INT_MIN, 0, true);
         }
         
-        SubTreeInfo* ls = findLargestBST(root->left);
-        SubTreeInfo* rs = findLargestBST(root->right);
+        info* ls = solver(root->left);
+        info* rs = solver(root->right);
         
-        // Check if a Binary tree rooted under the current root is a BST
-        // 1. Left and right subtree are also BST
-        // 2. root node > largest value in the left subtree
-        // 3. root node < smallest value in the right subtree
-        
-        SubTreeInfo* info = NULL;
+        info* x = NULL;
         if (ls->isBST && rs->isBST && (root->data > ls->max && root->data < rs->min)){
-            info = new SubTreeInfo(min({root->data, ls->min, rs->min}), max({root->data, ls->max, rs->max}), ls->size +1+ rs->size, true);
+            x = new info(min({root->data, ls->min, rs->min}), max({root->data, ls->max, rs->max}), ls->size +1+ rs->size, true);
         } else {
-            info = new SubTreeInfo(0, 0, max(ls->size, rs->size), false);
+            x = new info(0, 0, max(ls->size, rs->size), false);
         }
         
-    return info;
+    return x;
     }
     
     int largestBst(Node *root){
     
-    return findLargestBST(root)->size;
+        info *x = solver(root);
+        
+    return x->size;
     }
 };
 
