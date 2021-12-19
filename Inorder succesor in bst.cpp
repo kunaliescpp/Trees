@@ -36,25 +36,24 @@ Constraints:
 class Solution{
   public:
     
-    bool check = false;
+    void solver(Node* root, Node *x, Node*& next){
+        
+        if(root == NULL) return;
+        
+        if(root->data > x->data){
+            next = root;
+            solver(root->left, x, next);
+        } else {
+            solver(root->right, x, next);
+        }
+    }
+    
     Node *inOrderSuccessor(Node *root, Node *x){
       
-      if(root == NULL) return NULL;
-       
-       Node *left = inOrderSuccessor(root->left, x);
-       if(left != NULL) return left;
-       
-       if(check == true){
-           check = false;
-           return root;
-       }
-       
-       if(root == x) check = true;
-       
-       Node *right = inOrderSuccessor(root->right, x);
-       if(right != NULL) return right;
-       
-    return NULL;
+      Node *next = NULL;
+      solver(root, x, next);
+
+    return next;
     }
 };
 
