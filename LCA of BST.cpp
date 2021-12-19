@@ -36,18 +36,15 @@ public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         
         if(root == NULL) return NULL;
+        if(root == p || root == q) return root;
         
-        if(root->val > p->val && root->val > q->val){
-            TreeNode *a =  lowestCommonAncestor(root->left, p, q);
-            return a;
-        }
-        
-        else if(root->val < p->val && root->val < q->val){
-            TreeNode *b =  lowestCommonAncestor(root->right, p, q); 
-            return b;
-        }
-        
-        else return root;    //one is on left side and other is on right side
+        TreeNode *lc =  lowestCommonAncestor(root->left, p, q);
+        TreeNode *rc =  lowestCommonAncestor(root->right, p, q); 
+         
+        if(lc && rc) return root;
+        else if(!lc && rc) return rc;
+        else if(lc && !rc) return lc;
+        else return NULL;
     }
 };
 
