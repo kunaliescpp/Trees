@@ -48,4 +48,19 @@ public:
     }
 };
 
+/*
+        if(root == NULL) return NULL;
+        
+        if(root->val > p->val && root->val > q->val){
+            TreeNode *a =  lowestCommonAncestor(root->left, p, q);
+            return a;
+        }
+        
+        else if(root->val < p->val && root->val < q->val){
+            TreeNode *b =  lowestCommonAncestor(root->right, p, q); 
+            return b;
+        }
+        
+        else return root;
+*/        
 
