@@ -59,7 +59,6 @@ class Solution {
       correction(root, prv, incorrect1, incorrect2);
 
       swap(incorrect1->data, incorrect2->data);
-      swap(incorrect1, incorrect2);
   }
 };
 
