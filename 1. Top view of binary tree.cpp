@@ -41,11 +41,8 @@ Constraints:
 class Solution{
    public:
     
-  //Time complexity: O(n*log n)
-  //Space complexity: O(n)
-
   vector<int> topView(Node *root){
-      map<int, int> mp;                          //mp[-1] = 10      mp[0] = 15
+      map<int, Node*> mp;
       queue< pair<Node *,int> > q;               // pair <curr node, horizontal dis>
       q.push({root, 0});
 
@@ -55,7 +52,7 @@ class Solution{
 
           Node *curr = p.first;
           int hd = p.second;
-          if(mp.count(hd) == 0) mp[hd] = curr->data;
+          if(mp.count(hd) == 0) mp[hd] = curr;
 
           if(curr->left != NULL) q.push({curr->left, hd-1});
           if(curr->right != NULL) q.push({curr->right, hd+1});
@@ -63,7 +60,7 @@ class Solution{
 
       vector<int>vec;
       for(auto x : mp){
-        vec.push_back(x.second);
+        vec.push_back(x.second->data);
       }
   return vec; 
   }
