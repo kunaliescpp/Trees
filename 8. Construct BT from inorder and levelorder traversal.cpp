@@ -41,12 +41,11 @@ Node* CTree(int inorder[], unordered_map<int, int>& level, int is, int ie){
             }
         }
     
-        Node *node = new Node (inorder[inIndex]);
+        Node *curr = new Node (inorder[inIndex]);
+        curr->left = CTree(inorder, level, is, inIndex - 1); 
+        curr->right = CTree(inorder, level, inIndex + 1, ie); 
         
-        node->left = CTree(inorder, level, is, inIndex - 1); 
-        node->right = CTree(inorder, level, inIndex + 1, ie); 
-        
-return node;
+return curr;
 }
 
 Node* buildTree(int inorder[], int levelOrder[], int iStart, int iEnd,int n){
@@ -57,6 +56,7 @@ Node* buildTree(int inorder[], int levelOrder[], int iStart, int iEnd,int n){
       }
       
       Node* root = CTree(inorder, level, 0, n-1);
+       
 return root;
 }
 
