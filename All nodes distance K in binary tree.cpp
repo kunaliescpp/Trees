@@ -42,24 +42,19 @@ public:
     }
     
     //we find path from root to target node
-    bool find(TreeNode* root, TreeNode* x, vector<TreeNode *>& vec){                              //[5, 3]
+    bool find(TreeNode* root, TreeNode* x, vector<TreeNode *>& v){                              //[5, 3]
         
         if(root == NULL) return false;
         
         if(root == x){
-           vec.push_back(root);
+           v.push_back(root);
            return true;
         } 
     
-        bool filc = find(root->left, x, vec);                                          
-        if(filc == true){
-            vec.push_back(root);
-            return true;
-        } 
-        
-        bool firc = find(root->right, x, vec);
-        if(firc == true){
-            vec.push_back(root);
+        bool check1 = find(root->left, x, v);                                          
+        bool check2 = find(root->right, x, v);
+        if(check1 || check2){
+            v.push_back(root);
             return true;
         }
         
@@ -72,14 +67,13 @@ public:
         vector<TreeNode *> path;
         find(root, target, path);     // path = [5,3]
         
-        vector<int> v;
+        vector<int> ans;
         for(int i = 0; i < path.size(); i++){
-            printKLevelsDown(path[i], k-i, (i == 0) ? NULL : path[i-1], v);      // k level down of 5 is -> 7,4                                                                                                // k level down of 3 is -> 1,as 5 act as blocker
+            if(i == 0) printKLevelsDown(path[i], k-i, NULL, ans);       // k level down of 5 is -> 7,4 
+            else printKLevelsDown(path[i], k-i, path[i-1], ans);             // k level down of 3 is -> 1,as 5 act as blocker
         }
-    return v;
+    return ans;
     }
 };
-
-
 
 
