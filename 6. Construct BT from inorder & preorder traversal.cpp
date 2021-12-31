@@ -25,37 +25,35 @@ preorder is guaranteed to be the preorder traversal of the tree.
 inorder is guaranteed to be the inorder traversal of the tree.
  */
 
-
-
 class Solution {
 public:
-// Approach: preorder vector me iterate karna he and tree ko inorder arrangement ke according arrange karna he
-    int preIndex = 0;
-    TreeNode* cTree(vector<int>& preorder, vector<int>& inorder, int is, int ie){   //inorder start
-                                                                                    //inorder end
-        if(is > ie) return NULL;
-        TreeNode *root = new TreeNode (preorder[preIndex++]);
-        
-        int inIndex;
-        for(int i = is; i <= ie; i++){
-            if(inorder[i] == root->val){
-                inIndex = i;
-                break;
-            }
+    TreeNode* solver(vector<int>& inOrder, vector<int>& preOrder, int& idx, int si, int ei){
+
+        if(si > ei) return NULL;
+
+        int inOrder_idx = -1;
+        for(int i = si; i <= ei; i++){
+            if(inOrder[i] == preOrder[idx]){
+                inOrder_idx = i; 
+                idx++; break;
+            } 
         }
-    
-       root->left = cTree(preorder, inorder, is, inIndex-1);
-       root->right = cTree(preorder, inorder, inIndex + 1, ie);
-    
-    return root;
+
+        TreeNode* curr = new TreeNode (inOrder[inOrder_idx]);
+        curr->left = solver(inOrder, preOrder, idx, si, inOrder_idx-1);
+        curr->right = solver(inOrder, preOrder, idx, inOrder_idx+1, ei);
+
+    return curr;
     }
+
     
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         
-       TreeNode* curr = cTree(preorder, inorder, 0, inorder.size()-1);
-        
-    return curr;
+        int n = inorder.size(), m = preorder.size();
+        int idx = 0;
+        TreeNode* root = solver(inorder, preorder, idx, 0, n-1);
+    
+    return root;
     }
 };
-
 
