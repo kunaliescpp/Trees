@@ -24,34 +24,35 @@ Each value of postorder also appears in inorder.
 inorder is guaranteed to be the inorder traversal of the tree.
 postorder is guaranteed to be the postorder traversal of the tree.
 */
+class Solution {
+public:
+    TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, int& idx, int si, int ei){
 
-Node* solver(int inorder[], int postorder[], int& pi, int si, int ei){
+        if(si > ei) return NULL;
 
-    if(si > ei) return NULL;
-
-    Node *root = new Node (postorder[pi]);
-    pi--;
-
-    int idx;
-    for(int i = si; i <= ei; i++){
-        if(inorder[i] == root->val){
-            idx = i; break;
+        int inOrder_idx = -1;
+        for(int i = si; i <= ei; i++){
+            if(inOrder[i] == postOrder[idx]){
+                inOrder_idx = i; 
+                idx--; break;
+            } 
         }
+
+        TreeNode* curr = new TreeNode (inOrder[inOrder_idx]);
+        curr->right = solver(inOrder, postOrder, idx, inOrder_idx+1, ei);
+        curr->left = solver(inOrder, postOrder, idx, si, inOrder_idx-1);
+
+    return curr;
     }
+    
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder){
+    
+        int n = inorder.size(), m = postorder.size();
+        int idx = m-1;
+        TreeNode* root = solver(inorder, postorder, idx, 0, n-1);
 
-    root->right = solver(inorder, postorder, pi, idx + 1, ei);
-    root->left = solver(inorder, postorder, pi, si, idx-1);
- 
-return root;
-}
-
-Node* construct(int inorder[], int postorder[]){
-
-    int n = postorder.size();
-
-    Node *root = solver(inorder, postorder, n-1, 0, n-1);
-
-return root;
-}
+    return root;
+    }
+};
 
 
