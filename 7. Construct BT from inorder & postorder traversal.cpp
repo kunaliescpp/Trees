@@ -13,17 +13,13 @@ Output: [3,9,20,null,null,15,7]
 Example 2:
 Input: inorder = [-1], postorder = [-1]
 Output: [-1]
- 
+
 
 Constraints:
-1 <= inorder.length <= 3000
-postorder.length == inorder.length
--3000 <= inorder[i], postorder[i] <= 3000
 inorder and postorder consist of unique values.
 Each value of postorder also appears in inorder.
-inorder is guaranteed to be the inorder traversal of the tree.
-postorder is guaranteed to be the postorder traversal of the tree.
 */
+
 class Solution {
 public:
     TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, int& idx, int si, int ei){
