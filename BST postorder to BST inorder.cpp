@@ -40,7 +40,6 @@ Node *cTree (int post[], int &postIndex, int lr, int rr){
 return curr;    
 }
 
-//Tree dress up in : BST fashion + Postorder fashion
 Node *constructTree (int post[], int size){
    
     int postIndex = size - 1;
