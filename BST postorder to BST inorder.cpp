@@ -35,7 +35,6 @@ Node *cTree (int post[], int &postIndex, int lr, int rr){
     if(postIndex < 0 || post[postIndex] < lr || post[postIndex] > rr) return NULL;
      
     Node *root = new Node (post[postIndex--]);
-    
     root->right = cTree(post, postIndex, root->data, rr);  
     root->left = cTree(post, postIndex, lr, root->data);   
                                                              
