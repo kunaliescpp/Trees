@@ -1,5 +1,5 @@
 /*
-Problem Link: https://practice.geeksforgeeks.org/problems/implementing-floor-in-bst/1
+Problem Link: https://www.codingninjas.com/codestudio/problems/floor-from-bst_920457?leftPanelTab=1
 
 Floor in BST 
 
@@ -37,28 +37,17 @@ Constraints:
 1 <= X, Value of Node <= 10^6
 */
 
-void solver(Node* root, int key, int &ans){
+void solver(TreeNode<int>* root, int key, int &ans){
     
     if(root == NULL) return;
     
-    if(key == root->data){
-        ans = root->data;
-        return;
-    }
+    if(root->val <= key) ans = max(ans, root->val); 
     
-    if(key < root->data){
-        solver(root->left, key, ans);
-    }
-    
-    if(key > root->data){
-	ans = root->data;
-	solver(root->right, key, ans);
-    }
+    if(key < root->val) solver(root->left, key, ans);
+    if(key > root->val) solver(root->right, key, ans);
 }
 
-// floor of given number in BST.
-int floor(Node* root, int key) { 
-
+int floorInBST(TreeNode<int> * root, int key){ 
     int ans = -1;
     solver(root, key, ans);
     
