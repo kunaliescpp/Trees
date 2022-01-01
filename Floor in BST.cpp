@@ -50,10 +50,10 @@ void solver(Node* root, int key, int &ans){
         solver(root->left, key, ans);
     }
     
-	if(key > root->data){
-	    ans = root->data;
-	    solver(root->right, key, ans);
-	}
+    if(key > root->data){
+	ans = root->data;
+	solver(root->right, key, ans);
+    }
 }
 
 // floor of given number in BST.
@@ -64,6 +64,5 @@ int floor(Node* root, int key) {
     
 return ans;
 }
-
 
 
