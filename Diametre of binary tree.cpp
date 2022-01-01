@@ -42,28 +42,26 @@ struct Node{
 class Solution {
   public:
   
-    int height(Node* root, int& ans){
+    int count_nodes(Node* root, int& ans){
         
         if(root == NULL) return 0;
         
-        int lh = height(root->left, ans);
-        int rh = height(root->right, ans);
+        int cnt1 = count_nodes(root->left, ans);
+        int cnt2 = count_nodes(root->right, ans);
         
-        ans = max(ans, lh+rh+1);
+        ans = max(ans, cnt1+cnt2+1);
         
-    return 1 + max(lh, rh);
+    return 1 + max(cnt1, cnt2);
     }
   
     //diameter of a Binary Tree = longest path btw two leaf nodes
     int diameter(Node* root) {
         
         int ans;
-        height(root, ans);
+        count_nodes(root, ans);
         
     return ans;
     }
 };
-
-
 
 
