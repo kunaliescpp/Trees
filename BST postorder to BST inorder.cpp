@@ -29,16 +29,15 @@ struct Node{
 	Node *left, *right;
 };*/
 
-
 Node *cTree (int post[], int &postIndex, int lr, int rr){
     
     if(postIndex < 0 || post[postIndex] < lr || post[postIndex] > rr) return NULL;
      
-    Node *root = new Node (post[postIndex--]);
-    root->right = cTree(post, postIndex, root->data, rr);  
-    root->left = cTree(post, postIndex, lr, root->data);   
+    Node *curr = new Node (post[postIndex--]);
+    curr->right = cTree(post, postIndex, root->data, rr);  
+    curr->left = cTree(post, postIndex, lr, root->data);   
                                                              
-return root;    
+return curr;    
 }
 
 //Tree dress up in : BST fashion + Postorder fashion
@@ -46,9 +45,9 @@ Node *constructTree (int post[], int size){
    
     int postIndex = size - 1;
     int lr = -1e9, rr = 1e9;
-    Node *curr = cTree(post, postIndex, lr, rr);
+    Node *root = cTree(post, postIndex, lr, rr);
    
-   return curr;
+   return root;
 }
 
 
