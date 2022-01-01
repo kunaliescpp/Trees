@@ -34,8 +34,8 @@ Node *cTree (int post[], int &postIndex, int lr, int rr){
     if(postIndex < 0 || post[postIndex] < lr || post[postIndex] > rr) return NULL;
      
     Node *curr = new Node (post[postIndex--]);
-    curr->right = cTree(post, postIndex, root->data, rr);  
-    curr->left = cTree(post, postIndex, lr, root->data);   
+    curr->right = cTree(post, postIndex, curr->data, rr);  
+    curr->left = cTree(post, postIndex, lr, curr->data);   
                                                              
 return curr;    
 }
