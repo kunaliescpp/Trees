@@ -13,11 +13,12 @@ class Solution{
         
         if(root == NULL) return NULL;
         
-        mp[root] = new Node (root->data);
-        mp[root]->left = get_root_of_copied_tree(root->left, mp);
-        mp[root]->right = get_root_of_copied_tree(root->right, mp);
+        Node* new_node = new Node (root->data);
+        mp[root] = new_node;                           // for connect_random_nodes
+        new_node->left = get_root_of_copied_tree(root->left, mp);
+        new_node->right = get_root_of_copied_tree(root->right, mp);
     
-    return mp[root];
+    return new_node;
     }
     
     void connect_random_nodes(Node *root, unordered_map<Node *, Node *>& mp){
