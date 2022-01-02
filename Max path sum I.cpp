@@ -34,11 +34,11 @@ public:
        if(root == NULL) return 0;
        
        //recursive calls
-        int l = solver(root->left, maxSum);
-        int r = solver(root->right, maxSum);
+        int lc = solver(root->left, maxSum);
+        int rc = solver(root->right, maxSum);
         
-        int temp = max({root->val, l + root->val, r + root->val});
-        maxSum = max({maxSum, temp, l+r+root->val});
+        int temp = max({root->val, lc + root->val, rc + root->val});
+        maxSum = max({maxSum, temp, lc+rc+root->val});
         
     return temp;         //input = [-3], output = 0
     }
