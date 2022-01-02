@@ -46,16 +46,16 @@ public:
         
         if(root == NULL) return 0;
         
-        int a = solver(root->left, ans);
-        int b = solver(root->right, ans);
+        int lc = solver(root->left, ans);
+        int rc = solver(root->right, ans);
     
-        if(root->left == NULL)  return b + root->data;
-        if(root->right == NULL) return a + root->data;
+        if(root->left == NULL)  return rc + root->data;
+        if(root->right == NULL) return lc + root->data;
         
         int currSum = a+b+root->data;    
         ans = max(ans, currSum);        // if parent root has both the children : then check path sum
         
-    return max(a+root->data, b+root->data);
+    return max(rc+root->data, lc+root->data);
     }
 
     int maxPathSum(Node* root){
