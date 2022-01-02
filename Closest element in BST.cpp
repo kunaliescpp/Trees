@@ -41,17 +41,14 @@ Constraints:
 class Solution{
   public:
   
-  void solver(Node* root, int key, int &ans){
+void solver(Node* root, int key, int &ans){
     
     if(root == NULL) return;
     
+    ans = min(ans, abs(root->data - key));
     solver(root->left, key, ans);
-    
-    if(ans >= abs(root->data - key)) ans = abs(root->data - key);
-    else return;
-    
     solver(root->right, key, ans);
-  }
+}
    
   int minDiff(Node *root, int key){
 
