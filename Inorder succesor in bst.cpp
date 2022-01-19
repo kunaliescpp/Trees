@@ -50,10 +50,10 @@ class Solution{
     
     Node *inOrderSuccessor(Node *root, Node *x){
       
-      Node *next = NULL;
-      solver(root, x, next);
+      Node *ans = NULL;
+      solver(root, x, ans);
 
-    return next;
+    return ans;
     }
 };
 
