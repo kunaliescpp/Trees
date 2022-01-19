@@ -36,15 +36,15 @@ Constraints:
 class Solution{
   public:
     
-    void solver(Node* root, Node *x, Node*& next){
+    void solver(Node* root, Node *x, Node*& ans){
         
         if(root == NULL) return;
         
         if(root->data > x->data){
-            next = root;
-            solver(root->left, x, next);
+            ans = root;
+            solver(root->left, x, ans);
         } else {
-            solver(root->right, x, next);
+            solver(root->right, x, ans);
         }
     }
     
