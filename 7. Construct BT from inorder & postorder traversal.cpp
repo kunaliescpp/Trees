@@ -22,7 +22,7 @@ Each value of postorder also appears in inorder.
 
 class Solution {
 public:
-    TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, unordered_map<int, int> mp, int& idx, int si, int ei){
+    TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, unordered_map<int, int>& mp, int& idx, int si, int ei){
 
         if(si > ei) return NULL;
         
