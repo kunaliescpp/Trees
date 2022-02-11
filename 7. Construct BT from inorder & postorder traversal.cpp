@@ -22,30 +22,31 @@ Each value of postorder also appears in inorder.
 
 class Solution {
 public:
-    TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, int& idx, int si, int ei){
+    TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, unordered_map<int, int> mp, int& idx, int si, int ei){
 
         if(si > ei) return NULL;
-
-        int inOrder_idx = -1;
-        for(int i = si; i <= ei; i++){
-            if(inOrder[i] == postOrder[idx]){
-                inOrder_idx = i; 
-                idx--; break;
-            } 
-        }
-
+        
+        if(idx < 0) return NULL;
+        int inOrder_idx = mp[postOrder[idx]];
+        idx--;
+        
         TreeNode* curr = new TreeNode (inOrder[inOrder_idx]);
-        curr->right = solver(inOrder, postOrder, idx, inOrder_idx+1, ei);
-        curr->left = solver(inOrder, postOrder, idx, si, inOrder_idx-1);
+        curr->right = solver(inOrder, postOrder, mp, idx, inOrder_idx+1, ei);
+        curr->left = solver(inOrder, postOrder, mp, idx, si, inOrder_idx-1);
 
     return curr;
     }
     
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder){
     
-        int n = inorder.size(), m = postorder.size();
-        int idx = m-1;
-        TreeNode* root = solver(inorder, postorder, idx, 0, n-1);
+        int n = inorder.size();
+        unordered_map<int, int> mp;
+        for(int i = 0; i < n; i++){
+            mp[inorder[i]] = i;
+        }
+        
+        int idx = postorder.size()-1;
+        TreeNode* root = solver(inorder, postorder, mp, idx, 0, n-1);
 
     return root;
     }
