@@ -27,31 +27,32 @@ inorder is guaranteed to be the inorder traversal of the tree.
 
 class Solution {
 public:
-    TreeNode* solver(vector<int>& inOrder, vector<int>& preOrder, int& idx, int si, int ei){
+    
+    TreeNode* solver(vector<int>& inorder, vector<int>& preorder, unordered_map<int, int>& mp, int& idx, int si, int ei){
 
         if(si > ei) return NULL;
 
-        int inOrder_idx = -1;
-        for(int i = si; i <= ei; i++){
-            if(inOrder[i] == preOrder[idx]){
-                inOrder_idx = i; 
-                idx++; break;
-            } 
-        }
+        if(idx > preorder.size()-1) return NULL;
+        int inorder_idx = mp[preorder[idx]]; 
+        idx++; 
 
-        TreeNode* curr = new TreeNode (inOrder[inOrder_idx]);
-        curr->left = solver(inOrder, preOrder, idx, si, inOrder_idx-1);
-        curr->right = solver(inOrder, preOrder, idx, inOrder_idx+1, ei);
+        TreeNode* curr = new TreeNode (inorder[inorder_idx]);
+        curr->left = solver(inorder, preorder, mp, idx, si, inorder_idx-1);
+        curr->right = solver(inorder, preorder, mp, idx, inorder_idx+1, ei);
 
     return curr;
     }
-
     
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         
-        int n = inorder.size(), m = preorder.size();
+        int n = inorder.size();
+        unordered_map<int, int> mp;
+        for(int i = 0; i < n; i++){
+            mp[inorder[i]] = i;
+        }
+        
         int idx = 0;
-        TreeNode* root = solver(inorder, preorder, idx, 0, n-1);
+        TreeNode* root = solver(inorder, preorder, mp, idx, 0, n-1);
     
     return root;
     }
