@@ -19,37 +19,45 @@ Constraints:
 inorder and postorder consist of unique values.
 Each value of postorder also appears in inorder.
 */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
 
-class Solution {
-public:
-    TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, unordered_map<int, int>& mp, int& idx, int si, int ei){
+TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, map<int, int>& mp, int& idx, int si, int ei){
 
-        if(si > ei) return NULL;
-        
-        if(idx < 0) return NULL;
-        int inOrder_idx = mp[postOrder[idx]];
-        idx--;
-        
-        TreeNode* curr = new TreeNode (inOrder[inOrder_idx]);
-        curr->right = solver(inOrder, postOrder, mp, idx, inOrder_idx+1, ei);
-        curr->left = solver(inOrder, postOrder, mp, idx, si, inOrder_idx-1);
+    if(si > ei) return NULL;
 
-    return curr;
+    if(idx < 0) return NULL;
+    int inOrder_idx = mp[postOrder[idx]];
+    idx--;
+
+    TreeNode* curr = new TreeNode (inOrder[inOrder_idx]);
+    curr->right = solver(inOrder, postOrder, mp, idx, inOrder_idx+1, ei);
+    curr->left = solver(inOrder, postOrder, mp, idx, si, inOrder_idx-1);
+
+return curr;
+}
+
+TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder){
+
+    int n = inorder.size();
+    map<int, int> mp;
+    for(int i = 0; i < n; i++){
+        mp[inorder[i]] = i;
     }
-    
-    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder){
-    
-        int n = inorder.size();
-        unordered_map<int, int> mp;
-        for(int i = 0; i < n; i++){
-            mp[inorder[i]] = i;
-        }
-        
-        int idx = postorder.size()-1;
-        TreeNode* root = solver(inorder, postorder, mp, idx, 0, n-1);
 
-    return root;
-    }
-};
+    int idx = postorder.size()-1;
+    TreeNode* root = solver(inorder, postorder, mp, idx, 0, n-1);
+
+return root;
+}
 
 
