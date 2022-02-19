@@ -28,7 +28,7 @@ inorder is guaranteed to be the inorder traversal of the tree.
 class Solution {
 public:
     
-    TreeNode* solver(vector<int>& inorder, vector<int>& preorder, unordered_map<int, int>& mp, int& idx, int si, int ei){
+    TreeNode* solver(vector<int>& inorder, vector<int>& preorder, map<int, int>& mp, int& idx, int si, int ei){
 
         if(si > ei) return NULL;
 
@@ -46,7 +46,7 @@ public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         
         int n = inorder.size();
-        unordered_map<int, int> mp;
+        map<int, int> mp;
         for(int i = 0; i < n; i++){
             mp[inorder[i]] = i;
         }
