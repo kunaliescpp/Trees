@@ -35,7 +35,6 @@ TreeNode* solver(vector<int>& inOrder, vector<int>& postOrder, map<int, int>& mp
 
     if(si > ei) return NULL;
 
-    if(idx < 0) return NULL;
     int inOrder_idx = mp[postOrder[idx]];
     idx--;
 
