@@ -43,28 +43,22 @@ class Solution {
    //Time complexity : O(n)
    //Space complexity : O(n)
     void leftBoundary(Node* root, vector<int>& v){
-
-        //leaves has seperate function so, return if leaves occur
         if(root == NULL || (root->left == NULL && root->right == NULL)) return;
     
         v.push_back(root->data);
-        
         if(root->left != NULL) leftBoundary(root->left, v);
         else leftBoundary(root->right, v);
     }
 
     void rightBoundary(Node* root, vector<int>& v){
-        
         if(root == NULL || (root->left == NULL && root->right == NULL)) return;
         
         if(root->right != NULL) rightBoundary(root -> right, v);
         else rightBoundary(root -> left, v);
-        
         v.push_back(root->data);
     }
 
     void leafNodes(Node* root, vector<int>& v){
-        
         if(root == NULL) return;
         
         if(root->left == NULL && root->right == NULL){
@@ -77,9 +71,7 @@ class Solution {
     }
 
     vector <int> printBoundary(Node *root){
-        
         vector<int> v;
-        
         if(root == NULL) return v;
         
         v.push_back(root->data);
