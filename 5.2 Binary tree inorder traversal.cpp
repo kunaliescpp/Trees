@@ -53,15 +53,12 @@ public:
     // Inorder(leftSubtree    root    rightSubtree)
     vector<int> inorderTraversal(TreeNode* root) {                         
         
-         vector<int>v;
+        vector<int>v;
         if(root == NULL) return {};
         
         stack<TreeNode *>stk;
-        // stk.push(root);
         TreeNode *curr = root;
-        
         while( curr != NULL || !stk.empty()){
-            
            while(curr != NULL){
                stk.push(curr);
                curr = curr->left;
