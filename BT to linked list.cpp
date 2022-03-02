@@ -30,20 +30,20 @@ The number of nodes in the tree is in the range [0, 2000].
 */
 
 // reverse preorder approach
-void flatten_nodes(TreeNode* curr, TreeNode *&nxt){
-  if(curr == NULL) return;
+void flatten_nodes(TreeNode* root, TreeNode *&nxt){
+  if(root == NULL) return;
 
-  flatten_nodes(curr->right, nxt);
-  flatten_nodes(curr->left, nxt);
+  flatten_nodes(root->right, nxt);
+  flatten_nodes(root->left, nxt);
 
   if(nxt == NULL){
       // curr->left = NULL;
       // curr->right = NULL;
-      nxt = curr;
+      nxt = root;
   } else{
-      curr->left = NULL;
-      curr->right = nxt;
-      nxt = curr;
+      root->left = NULL;
+      root->right = nxt;
+      nxt = root;
   }
 }
 
